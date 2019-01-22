@@ -1,0 +1,35 @@
+{
+  "name": "typescript-api-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:w": "tsc -w",
+    "dev": "npm run build:w & nodemon ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismayilmalik/typescript-api-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ismayilmalik/typescript-api-example/issues"
+  },
+  "homepage": "https://github.com/ismayilmalik/typescript-api-example#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "routing-controllers": "^0.7.7"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.4",
+    "@types/express": "^4.16.0",
+    "tslint": "^5.12.1",
+    "tslint-config-airbnb": "^5.11.1"
+  }
+}
