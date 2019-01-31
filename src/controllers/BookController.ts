@@ -1,14 +1,9 @@
-import {
-    JsonController,
-    Get
-} from 'routing-controllers';
+import { JsonController, Get } from 'routing-controllers';
 
 @JsonController('/books')
 export class BookController {
-
-    @Get()
-    async getBooks(): Promise<any> {
-        return "yehu it works!";
-    }
-
+  @Get()
+  async getBooks(): Promise<any> {
+    return 'yehu it works!';
+  }
 }

@@ -6,7 +6,11 @@
   "scripts": {
     "build": "tsc",
     "build:w": "tsc -w",
-    "dev": "npm run build:w & nodemon ./dist"
+    "dev": "npm run build:w & nodemon ./dist",
+    "test": "jest",
+    "test:w": "jest --watch",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -23,13 +27,22 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "routing-controllers": "^0.7.7"
+    "kafka-node": "^4.0.1",
+    "routing-controllers": "^0.7.7",
+    "typedi": "^0.8.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/cors": "^2.8.4",
     "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.13",
+    "@types/kafka-node": "^2.0.7",
+    "jest": "^24.0.0",
+    "prettier": "^1.16.3",
+    "ts-jest": "^23.10.5",
     "tslint": "^5.12.1",
-    "tslint-config-airbnb": "^5.11.1"
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.3.1"
   }
 }

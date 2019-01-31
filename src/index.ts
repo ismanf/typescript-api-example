@@ -1,4 +1,4 @@
-import {BookApplication} from './App';
+import { BookApplication } from './App';
 
 const app = new BookApplication();
 app.run();

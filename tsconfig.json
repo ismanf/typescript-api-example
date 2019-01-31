@@ -16,13 +16,19 @@
         "noImplicitUseStrict": false,
         "outDir": "dist/",
         "listFiles": false,
-        "noEmitHelpers": false
+        "noEmitHelpers": false,
+        "typeRoots": [
+            "./src/@types",
+            "./node_modules/@types"
+        ]
     },
     "include": [
         "src/**/*"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "src/@types",
+        "**/__tests__/*"
     ],
     "compileOnSave": true
 }
