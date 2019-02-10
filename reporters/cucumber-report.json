@@ -9,7 +9,7 @@
     "uri": "tests/e2e/features/books/create/main.feature",
     "elements": [
       {
-        "description": "   If the client sends a POST request to /books with a unsupported payload, it\n   should receive a response with 4xx status code.",
+        "description": "    If the client sends a POST request to /books with a empty payload, it\n    should receive a response with 400 status code.",
         "id": "create-book;empty-payload",
         "keyword": "Scenario",
         "line": 7,
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2000000
+              "duration": 1000000
             }
           },
           {
@@ -52,7 +52,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000000
+              "duration": 34000000
             }
           },
           {
@@ -64,7 +64,8 @@
               "location": "tests/e2e/step-definitions/books/create/index.ts:22"
             },
             "result": {
-              "status": "passed"
+              "status": "passed",
+              "duration": 1000000
             }
           },
           {
@@ -73,7 +74,7 @@
             "line": 16,
             "name": "the payload of the response should be a JSON object",
             "match": {
-              "location": "tests/e2e/step-definitions/books/create/index.ts:28"
+              "location": "tests/e2e/step-definitions/books/create/index.ts:26"
             },
             "result": {
               "status": "passed",
@@ -86,10 +87,162 @@
             "line": 17,
             "name": "contains a message property which says \"Payload should not be empty\"",
             "match": {
-              "location": "tests/e2e/step-definitions/books/create/index.ts:42"
+              "location": "tests/e2e/step-definitions/books/create/index.ts:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "description": "    If the client sends a POST request to /books with a unsupported payload which is not\n    JSON, it should receive a response with 415 Unsupported Media Type HTTP status code.",
+        "id": "create-book;unsupported-payload-media-types",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Unsupported Payload Media Types",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 25,
+            "name": "the client creates a POST request to /books",
+            "match": {
+              "location": "tests/e2e/step-definitions/books/create/index.ts:5"
             },
             "result": {
               "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 26,
+            "name": "attaches a generic non-JSON payload",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 27,
+            "name": "sends the request",
+            "match": {
+              "location": "tests/e2e/step-definitions/books/create/index.ts:13"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 28,
+            "name": "our API should respond with a 415 HTTP status code",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "the payload of the response should be a JSON object",
+            "match": {
+              "location": "tests/e2e/step-definitions/books/create/index.ts:26"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 30,
+            "name": "contains a message property which says 'The \"Content-Type\" header must always be \"application/json\"'",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "description": "    If the client sends a POST request to /books with a unsupported payload which is \n    malformed, it should receive a response with 400 Bad Request HTTP status code.",
+        "id": "create-book;malformed-json-payload",
+        "keyword": "Scenario",
+        "line": 33,
+        "name": "Malformed JSON Payload",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "the client creates a POST request to /books",
+            "match": {
+              "location": "tests/e2e/step-definitions/books/create/index.ts:5"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 39,
+            "name": "attaches a generic malformed payload",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 40,
+            "name": "sends the request",
+            "match": {
+              "location": "tests/e2e/step-definitions/books/create/index.ts:13"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 41,
+            "name": "our API should respond with a 400 HTTP status code",
+            "match": {
+              "location": "tests/e2e/step-definitions/books/create/index.ts:22"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 42,
+            "name": "the payload of the response should be a JSON object",
+            "match": {
+              "location": "tests/e2e/step-definitions/books/create/index.ts:26"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 43,
+            "name": "contains a message property which says 'Payload should be valid JSON'",
+            "result": {
+              "status": "undefined"
             }
           }
         ]

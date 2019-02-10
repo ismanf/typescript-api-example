@@ -20,27 +20,17 @@ When('sends the request', async function () {
 });
 
 Then('our API should respond with a 400 HTTP status code', function () {
-  if (this.response.statusCode !== 400) {
-    throw new Error();
-  }
+  expect(this.response.statusCode).to.equal(400);
 });
 
 Then('the payload of the response should be a JSON object', function () {
   const headers = this.response.headers;
   const contentType: string = headers['Content-Type'] || headers['content-type'];
-  if (!contentType || !contentType.includes('application/json')) {
-    throw new Error();
-  }
-
-  try {
-    this.responsePayload = JSON.parse(this.response.text);
-  } catch (e) {
-    throw new Error('Response not a valid JSON object');
-  }
+  expect(contentType).to.exist;
+  expect(contentType).to.include('application/json');
 });
 
 Then('contains a message property which says "Payload should not be empty"', function () {
-  if(this.responsePayload.message !== 'Payload should not be empty') {
-    throw new Error();
-  }
+  const payload = { message: 'Payload should not be empty' };
+  expect(this.response.text).to.equal(JSON.stringify(payload));
 });
