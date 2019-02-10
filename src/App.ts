@@ -1,19 +1,20 @@
 import { Application } from 'express';
+import * as http from 'http';
+import logger from './core/logger';
 import { ExpressConfig } from './middleware/Express';
-import { Server, createServer } from 'http';
 
 export class BookApplication {
-  server: Server;
-  middleware: ExpressConfig;
+  private server: http.Server;
+  private middleware: ExpressConfig;
 
   constructor() {
     this.middleware = new ExpressConfig();
-    this.server = createServer(this.middleware.app);
+    this.server = http.createServer(this.middleware.app);
   }
 
-  run() {
+  public run() {
     this.server.listen(3000, () => {
-      console.log('App started on port: 3000');
+      logger.info('App listens on 3000');
     });
   }
 }

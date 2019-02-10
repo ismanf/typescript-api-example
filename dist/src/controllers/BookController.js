@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -21,17 +18,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
-const logger_1 = require("../middleware/logger");
-const validator_1 = require("../middleware/validator");
 let BookController = class BookController {
-    getAll() {
+    getBooks() {
         return __awaiter(this, void 0, void 0, function* () {
             return 'yehu it works!';
-        });
-    }
-    create(book) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return 'test';
         });
     }
 };
@@ -40,18 +30,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], BookController.prototype, "getAll", null);
-__decorate([
-    routing_controllers_1.Post(),
-    routing_controllers_1.UseBefore(validator_1.ValidatorMiddleware),
-    __param(0, routing_controllers_1.Body()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], BookController.prototype, "create", null);
+], BookController.prototype, "getBooks", null);
 BookController = __decorate([
-    routing_controllers_1.JsonController('/books'),
-    routing_controllers_1.UseBefore(logger_1.LoggerMiddleware)
+    routing_controllers_1.JsonController('/books')
 ], BookController);
 exports.BookController = BookController;
 //# sourceMappingURL=BookController.js.map
