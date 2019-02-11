@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "http://localhost:3000/schemas/book/create.json",
+    "title": "Book schema",
+    "description": "Book schema",
+    "type": "object",
+    "properties": {
+      "title": { "type": "string" },
+      "summary": { "type": "string" },
+      "genre": { "type": "string" },
+      "author": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "email": {
+            "type": "number",
+            "format": "email"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "email"
+        ]
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "title",
+      "genre",
+      "author"
+    ]
+  }

@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class ValidatorMiddleware {
-    use(request, response, next) {
+exports.validator = (request, response, next) => {
+    console.log(request.body);
+    if (['POST', 'PUT'].indexOf(request.method) !== -1 && request.headers['content-length'] === '0') {
         response.status(400).json({ message: 'Payload should not be empty' });
+        return;
     }
-}
-exports.ValidatorMiddleware = ValidatorMiddleware;
+    next();
+};
 //# sourceMappingURL=validator.js.map

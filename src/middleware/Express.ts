@@ -4,13 +4,16 @@ import * as cors from 'cors';
 import { NextFunction, Request, Response } from 'express';
 import * as path from 'path';
 import { useExpressServer } from 'routing-controllers';
+import { validator } from './validator';
 
 export class ExpressConfig {
   public app: express.Express;
 
   constructor() {
     this.app = express();
+    this.app.use(bodyPArser.urlencoded({ extended: true }));
     this.app.use(bodyPArser.json());
+    this.app.use(validator);
     this.app.use(this.clientErrorHandler);
     this.setupControllers();
   }

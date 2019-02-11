@@ -4,10 +4,13 @@ const express = require("express");
 const bodyPArser = require("body-parser");
 const path = require("path");
 const routing_controllers_1 = require("routing-controllers");
+const validator_1 = require("./validator");
 class ExpressConfig {
     constructor() {
         this.app = express();
+        this.app.use(bodyPArser.urlencoded({ extended: true }));
         this.app.use(bodyPArser.json());
+        this.app.use(validator_1.validator);
         this.app.use(this.clientErrorHandler);
         this.setupControllers();
     }

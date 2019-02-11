@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/ismayilmalik/typescript-api-example#readme",
   "dependencies": {
+    "ajv": "^6.9.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "cucumber": "^5.1.0",
@@ -38,6 +39,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@types/ajv": "^1.0.0",
     "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.7",
     "@types/cors": "^2.8.4",

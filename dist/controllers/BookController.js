@@ -22,7 +22,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const logger_1 = require("../middleware/logger");
-const validator_1 = require("../middleware/validator");
+const createJson = require("../schemas/book/create.json");
+const Ajv = require("ajv");
 let BookController = class BookController {
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -30,6 +31,19 @@ let BookController = class BookController {
         });
     }
     create(book) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(book);
+            const validate = new Ajv()
+                .addFormat('email', /^[\w.+]+@\w+\.\w+$/)
+                .compile(createJson);
+            const valid = validate(book);
+            if (!valid) {
+                return validate.errors;
+            }
+            return 'OK!';
+        });
+    }
+    update(book) {
         return __awaiter(this, void 0, void 0, function* () {
             return 'test';
         });
@@ -43,12 +57,18 @@ __decorate([
 ], BookController.prototype, "getAll", null);
 __decorate([
     routing_controllers_1.Post(),
-    routing_controllers_1.UseBefore(validator_1.ValidatorMiddleware),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], BookController.prototype, "create", null);
+__decorate([
+    routing_controllers_1.Put(),
+    __param(0, routing_controllers_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], BookController.prototype, "update", null);
 BookController = __decorate([
     routing_controllers_1.JsonController('/books'),
     routing_controllers_1.UseBefore(logger_1.LoggerMiddleware)

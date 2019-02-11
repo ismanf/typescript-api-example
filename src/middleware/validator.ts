@@ -1,7 +1,10 @@
-import { ExpressMiddlewareInterface } from 'routing-controllers';
+import { Request, Response, NextFunction, Handler } from 'express';
 
-export class ValidatorMiddleware implements ExpressMiddlewareInterface {
-  public use(request: any, response: any, next: (err?: any) => void) {
+export const validator: Handler =  (request: Request, response: Response, next: NextFunction) => {
+  console.log(request.body);
+  if (['POST', 'PUT'].indexOf(request.method) !== -1 && request.headers['content-length'] === '0') {
     response.status(400).json({ message: 'Payload should not be empty' });
+    return;
   }
-}
+  next();
+};

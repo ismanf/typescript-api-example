@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { Then, When } from 'cucumber';
 import * as superagent from 'superagent';
 
-When('the client creates a POST request to /books', function () {
-  this.request = superagent('POST', 'http://localhost:3000/api/books');
+When(/^the client makes a (PUT|POST) request to \/books/, function (method) {
+  this.request = superagent(method, 'http://localhost:3000/api/books');
 });
 
 When('attaches a generic empty payload', function () {
@@ -19,8 +19,8 @@ When('sends the request', async function () {
   }
 });
 
-Then('our API should respond with a 400 HTTP status code', function () {
-  expect(this.response.statusCode).to.equal(400);
+Then(/^our API should respond with a ([1-5]\d{2}) HTTP status code/, function (statusCode) {
+  expect(this.response.statusCode).to.equal(Number(statusCode));
 });
 
 Then('the payload of the response should be a JSON object', function () {
